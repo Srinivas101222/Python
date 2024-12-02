@@ -1,0 +1,56 @@
+class GroceryInventory:
+    def __init__(self):
+        self.inventory = {}
+
+    def add_item(self):
+        item_name = input("Enter item name: ")
+        if item_name in self.inventory:
+            print(f"Item '{item_name}' already exists in inventory.")
+        else:
+            quantity = int(input("Enter quantity: "))
+            price = float(input("Enter price: "))
+            self.inventory[item_name] = {'quantity': quantity, 'price': price}
+            print(f"Item '{item_name}' added to inventory.")
+
+    def update_item(self):
+        item_name = input("Enter item name to update: ")
+        if item_name in self.inventory:
+            quantity = int(input("Enter new quantity: "))
+            price = float(input("Enter new price: "))
+            self.inventory[item_name] = {'quantity': quantity, 'price': price}
+            print(f"Item '{item_name}' updated.")
+        else:
+            print(f"Item '{item_name}' not found in inventory.")
+
+    def display_inventory(self):
+        if not self.inventory:
+            print("Inventory is empty.")
+        else:
+            print("Current Inventory:")
+            for item_name, details in self.inventory.items():
+                print(f"Item: {item_name}, Quantity: {details['quantity']}, Price: ${details['price']:.2f}")
+
+    def main_menu(self):
+        while True:
+            print("\nGrocery Shop Inventory Management System")
+            print("1. Add Item")
+            print("2. Update Item")
+            print("3. Display Inventory")
+            print("4. Exit")
+            choice = input("Enter your choice (1-4): ")
+
+            if choice == '1':
+                self.add_item()
+            elif choice == '2':
+                self.update_item()
+            elif choice == '3':
+                self.display_inventory()
+            elif choice == '4':
+                print("Exiting the program.")
+                break
+            else:
+                print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    inventory_system = GroceryInventory()
+    inventory_system.main_menu()
